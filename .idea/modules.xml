@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RasWeather.iml" filepath="$PROJECT_DIR$/.idea/modules/RasWeather.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RasWeather_main.iml" filepath="$PROJECT_DIR$/.idea/modules/RasWeather_main.iml" group="RasWeather" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RasWeather_test.iml" filepath="$PROJECT_DIR$/.idea/modules/RasWeather_test.iml" group="RasWeather" />
+    </modules>
+  </component>
+</project>

@@ -9,17 +9,10 @@ import javafx.scene.layout.AnchorPane
 class Controller {
 
     @FXML
-    lateinit var rootPane: AnchorPane
+    lateinit private var rootPane: AnchorPane
     @FXML
-    lateinit var weatherImage: ImageView
+    lateinit private var weatherImage: ImageView
     @FXML
-    lateinit var refreshButton: Button
-
-    @FXML
-    private fun initialize() {
-        weatherImage.fitWidthProperty().bind(rootPane.widthProperty())
-        weatherImage.fitHeightProperty().bind(rootPane.heightProperty())
-    }
-
+    lateinit private var refreshButton: Button
 
 }

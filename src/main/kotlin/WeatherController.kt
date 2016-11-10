@@ -22,4 +22,8 @@ class WeatherController : Initializable {
     override fun initialize(location: URL?, resources: ResourceBundle?) {
     }
 
+    @FXML
+    fun onClickRefresh() {
+    }
+
 }

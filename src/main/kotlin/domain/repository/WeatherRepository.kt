@@ -1,12 +1,12 @@
-package domain.usecase
+package domain.repository
 
 import domain.model.Weather
 import rx.Observable
 
 /**
- * Created by tamura_k on 2016/11/11.
+ * Created by weath on 2016/11/15.
  */
-interface WeatherUseCase {
+interface WeatherRepository {
 
     fun fetch(cityId: String): Observable<Weather>
 

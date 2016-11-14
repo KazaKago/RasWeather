@@ -4,7 +4,7 @@ import dagger.Component
 import di.module.ApplicationModule
 import di.module.DataModule
 import di.module.DomainModule
-import WeatherApplication
+import presentation.Presenter.WeatherPresenter
 import javax.inject.Singleton
 
 /**
@@ -14,6 +14,6 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(ApplicationModule::class, DomainModule::class, DataModule::class))
 interface ApplicationComponent {
 
-    fun inject(weatherApplication: WeatherApplication)
+    fun inject(weatherPresenter: WeatherPresenter)
 
 }

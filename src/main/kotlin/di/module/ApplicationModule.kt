@@ -1,7 +1,7 @@
 package di.module
 
 import dagger.Module
-import presentation.WeatherApplication
+import WeatherApplication
 
 /**
  * Created by tamura_k on 2016/11/11.

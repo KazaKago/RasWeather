@@ -4,7 +4,7 @@ import dagger.Component
 import di.module.ApplicationModule
 import di.module.DataModule
 import di.module.DomainModule
-import presentation.WeatherApplication
+import WeatherApplication
 import javax.inject.Singleton
 
 /**

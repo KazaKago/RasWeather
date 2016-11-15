@@ -12,6 +12,9 @@
     <option name="PASS_PARENT_ENVS" value="true" />
     <module name="RasWeather_main" />
     <envs />
-    <method />
+    <method>
+      <option name="Gradle.BeforeRunTask" enabled="true" tasks="build" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>

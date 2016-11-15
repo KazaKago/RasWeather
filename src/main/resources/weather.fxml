@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane fx:id="rootPane" prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.Controller.WeatherController">
+<AnchorPane fx:id="rootPane" prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.WeatherController">
     <BorderPane layoutX="19.0" layoutY="18.0" prefHeight="231.0" prefWidth="440.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
         <center>
             <ImageView fx:id="weatherImage" fitHeight="219.0" fitWidth="366.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">

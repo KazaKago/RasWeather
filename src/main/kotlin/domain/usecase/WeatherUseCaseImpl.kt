@@ -1,6 +1,6 @@
 package domain.usecase
 
-import domain.model.Weather
+import domain.model.WeatherModel
 import domain.repository.WeatherRepository
 import rx.Observable
 
@@ -9,7 +9,7 @@ import rx.Observable
  */
 class WeatherUseCaseImpl(private val weatherRepository: WeatherRepository) : WeatherUseCase {
 
-    override fun fetch(cityId: String): Observable<Weather> {
+    override fun fetch(cityId: String): Observable<WeatherModel> {
         return weatherRepository.fetch(cityId)
     }
 

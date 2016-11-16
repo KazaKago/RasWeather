@@ -1,6 +1,6 @@
 package domain.usecase
 
-import domain.model.Weather
+import domain.model.WeatherModel
 import rx.Observable
 
 /**
@@ -8,6 +8,6 @@ import rx.Observable
  */
 interface WeatherUseCase {
 
-    fun fetch(cityId: String): Observable<Weather>
+    fun fetch(cityId: String): Observable<WeatherModel>
 
 }

@@ -1,6 +1,6 @@
 package data.api
 
-import domain.model.Weather
+import domain.model.WeatherModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -11,6 +11,6 @@ import rx.Observable
 interface WeatherApi {
 
     @GET("json/v1")
-    operator fun get(@Query("city") cityId: String): Observable<Weather>
+    operator fun get(@Query("city") cityId: String): Observable<WeatherModel>
 
 }

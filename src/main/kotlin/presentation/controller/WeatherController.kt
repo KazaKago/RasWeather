@@ -7,6 +7,7 @@ import javafx.fxml.FXML
 import javafx.fxml.Initializable
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
@@ -79,8 +80,35 @@ class WeatherController : Initializable {
 
     private fun refreshView(weather: WeatherModel) {
         locationLabel.text = weather.title
-        for(var forecast in weather.forecasts) {
-
+        weather.forecasts?.let {
+            if (0 < it.count()) {
+                val forecast = it[0]
+                todayDateLabel.text = forecast.dateLabel + " (" + forecast.date + ")"
+                todayWeatherImage.image = forecast.image?.url?.let(::Image)
+                todayWeatherLabel.text = forecast.telop
+                todayTemperatureMaxLabel.text = forecast.temperature?.max?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
+                todayTemperatureMinLabel.text = forecast.temperature?.min?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
+            } else {
+                todayDateLabel.text = "-"
+                todayWeatherImage.image = null
+                todayWeatherLabel.text = "-"
+                todayTemperatureMaxLabel.text = "-℃"
+                todayTemperatureMinLabel.text = "-℃"
+            }
+            if (1 < it.count()) {
+                val forecast = it[1]
+                tomorrowDateLabel.text = forecast.dateLabel + " (" + forecast.date + ")"
+                tomorrowWeatherImage.image = forecast.image?.url?.let(::Image)
+                tomorrowWeatherLabel.text = forecast.telop
+                tomorrowTemperatureMaxLabel.text = forecast.temperature?.max?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
+                tomorrowTemperatureMinLabel.text = forecast.temperature?.min?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
+            } else {
+                tomorrowDateLabel.text = "-"
+                tomorrowWeatherImage.image = null
+                tomorrowWeatherLabel.text = "-"
+                tomorrowTemperatureMaxLabel.text = "-℃"
+                tomorrowTemperatureMinLabel.text = "-℃"
+            }
         }
     }
 

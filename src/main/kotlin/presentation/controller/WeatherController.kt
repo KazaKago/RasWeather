@@ -3,9 +3,13 @@ package presentation.controller
 import WeatherApplication
 import domain.model.WeatherModel
 import domain.usecase.WeatherUseCase
+import javafx.application.Platform
 import javafx.fxml.FXML
 import javafx.fxml.Initializable
+import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.Button
+import javafx.scene.control.Hyperlink
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
@@ -18,7 +22,7 @@ import javax.inject.Inject
 /**
  * Created by tamura_k on 2016/11/08.
  */
-class WeatherController : Initializable {
+class WeatherController() : Initializable {
 
     @FXML
     lateinit var locationLabel: Label
@@ -43,7 +47,7 @@ class WeatherController : Initializable {
     @FXML
     lateinit var tomorrowTemperatureMinLabel: Label
     @FXML
-    lateinit var descriptionLabel: Label
+    lateinit var descriptionLabel: Hyperlink
     @FXML
     lateinit var publishTimeLabel: Label
     @FXML
@@ -54,6 +58,7 @@ class WeatherController : Initializable {
     @Inject
     lateinit var weatherUseCase: WeatherUseCase
     private val subscriptions: CompositeSubscription
+    private var weather: WeatherModel? = null
 
     init {
         WeatherApplication.application.applicationComponent.inject(this)
@@ -71,19 +76,24 @@ class WeatherController : Initializable {
 
     @FXML
     fun onClickSettings() {
+        WeatherApplication.application.setSettingsScene(true)
+    }
 
+    @FXML
+    fun onClickDescription() {
+        WeatherApplication.application.setDescriptionScene(true, weather)
     }
 
     private fun fetchWeather() {
-        subscriptions.add(weatherUseCase.fetch("400040")
+        subscriptions.add(weatherUseCase.fetch("130010")
                 .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.immediate())
                 .subscribe(
                         { weather ->
-                            refreshView(weather)
+                            this.weather = weather
+                            Platform.runLater { refreshView(weather) }
                         },
                         { error ->
-                            showError()
+                            Platform.runLater { showError() }
                         },
                         {
                         }
@@ -127,7 +137,11 @@ class WeatherController : Initializable {
     }
 
     private fun showError() {
-
+        val alert = Alert(AlertType.ERROR)
+        alert.title = "エラー"
+        alert.dialogPane.headerText = "通信エラー"
+        alert.dialogPane.contentText = "情報の更新に失敗しました"
+        alert.show()
     }
 
 }

@@ -1,5 +1,6 @@
 package domain.usecase
 
+import domain.model.ForecastModel
 import domain.model.WeatherModel
 import rx.Observable
 
@@ -9,5 +10,7 @@ import rx.Observable
 interface WeatherUseCase {
 
     fun fetch(cityId: String): Observable<WeatherModel>
+
+    fun getImageUri(forecast: ForecastModel): String?
 
 }

@@ -43,7 +43,13 @@ class WeatherController : Initializable {
     @FXML
     lateinit var tomorrowTemperatureMinLabel: Label
     @FXML
+    lateinit var descriptionLabel: Label
+    @FXML
+    lateinit var publishTimeLabel: Label
+    @FXML
     lateinit var refreshButton: Button
+    @FXML
+    lateinit var settingsButton: Button
 
     @Inject
     lateinit var weatherUseCase: WeatherUseCase
@@ -63,6 +69,11 @@ class WeatherController : Initializable {
         fetchWeather()
     }
 
+    @FXML
+    fun onClickSettings() {
+
+    }
+
     private fun fetchWeather() {
         subscriptions.add(weatherUseCase.fetch("400040")
                 .subscribeOn(Schedulers.newThread())
@@ -72,6 +83,7 @@ class WeatherController : Initializable {
                             refreshView(weather)
                         },
                         { error ->
+                            showError()
                         },
                         {
                         }
@@ -80,11 +92,13 @@ class WeatherController : Initializable {
 
     private fun refreshView(weather: WeatherModel) {
         locationLabel.text = weather.title
+        descriptionLabel.text = weather.description?.text
+        publishTimeLabel.text = weather.publicTime
         weather.forecasts?.let {
             if (0 < it.count()) {
                 val forecast = it[0]
                 todayDateLabel.text = forecast.dateLabel + " (" + forecast.date + ")"
-                todayWeatherImage.image = forecast.image?.url?.let(::Image)
+                todayWeatherImage.image = weatherUseCase.getImageUri(forecast)?.let(::Image)
                 todayWeatherLabel.text = forecast.telop
                 todayTemperatureMaxLabel.text = forecast.temperature?.max?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
                 todayTemperatureMinLabel.text = forecast.temperature?.min?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
@@ -98,7 +112,7 @@ class WeatherController : Initializable {
             if (1 < it.count()) {
                 val forecast = it[1]
                 tomorrowDateLabel.text = forecast.dateLabel + " (" + forecast.date + ")"
-                tomorrowWeatherImage.image = forecast.image?.url?.let(::Image)
+                tomorrowWeatherImage.image = weatherUseCase.getImageUri(forecast)?.let(::Image)
                 tomorrowWeatherLabel.text = forecast.telop
                 tomorrowTemperatureMaxLabel.text = forecast.temperature?.max?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
                 tomorrowTemperatureMinLabel.text = forecast.temperature?.min?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
@@ -110,6 +124,10 @@ class WeatherController : Initializable {
                 tomorrowTemperatureMinLabel.text = "-℃"
             }
         }
+    }
+
+    private fun showError() {
+
     }
 
 }

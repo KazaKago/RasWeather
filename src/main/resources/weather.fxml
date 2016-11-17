@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.WeatherController">
+<VBox alignment="CENTER" prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kazkago.rasweather.presentation.controller.WeatherController">
    <children>
       <HBox alignment="CENTER">
          <children>

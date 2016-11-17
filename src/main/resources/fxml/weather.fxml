@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rasweather.presentation.controller.WeatherController">
+<VBox alignment="CENTER" prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kazakago.rasweather.presentation.controller.WeatherController">
    <children>
       <HBox alignment="CENTER">
          <children>
@@ -158,9 +158,6 @@
          </children>
       </HBox>
       <Hyperlink fx:id="descriptionLabel" ellipsisString="...  続きを読む" onAction="#onClickDescription" style="-fx-border-color: #78909C; -fx-border-radius: 5;" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textFill="#37474f" wrapText="true">
-         <font>
-            <Font size="14.0" />
-         </font>
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="10.0" />
          </VBox.margin>

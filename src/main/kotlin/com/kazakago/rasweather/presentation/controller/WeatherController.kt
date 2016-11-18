@@ -25,8 +25,8 @@ import javax.inject.Inject
 class WeatherController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(cycleFx: CycleFx?): SceneInfo? {
-            return cycleFx?.createSceneInfo("fxml/weather.fxml")
+        @JvmStatic fun createSceneInfo(cycleFx: CycleFx): SceneInfo? {
+            return cycleFx.createSceneInfo("fxml/weather.fxml")
         }
     }
 

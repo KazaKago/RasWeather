@@ -14,8 +14,8 @@ import javafx.scene.control.TextArea
 class DescriptionController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(cycleFx: CycleFx?, weather: WeatherModel?): SceneInfo? {
-            val sceneInfo = cycleFx?.createSceneInfo("fxml/description.fxml")
+        @JvmStatic fun createSceneInfo(cycleFx: CycleFx, weather: WeatherModel?): SceneInfo? {
+            val sceneInfo = cycleFx.createSceneInfo("fxml/description.fxml")
             sceneInfo?.controller<DescriptionController>()?.weather = weather
             return sceneInfo
         }

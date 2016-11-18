@@ -11,8 +11,8 @@ import javafx.fxml.FXML
 class AboutController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(cycleFx: CycleFx?): SceneInfo? {
-            return cycleFx?.createSceneInfo("fxml/about.fxml")
+        @JvmStatic fun createSceneInfo(cycleFx: CycleFx): SceneInfo? {
+            return cycleFx.createSceneInfo("fxml/about.fxml")
         }
     }
 

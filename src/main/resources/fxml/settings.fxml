@@ -16,13 +16,13 @@
          <children>
             <Button mnemonicParsing="false" onAction="#onClickBack" style="-fx-background-color: #00000000;">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/ic_arrow_back_black_48dp.png" />
                      </image></ImageView>
                </graphic>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Button>
             <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
@@ -35,13 +35,13 @@
                </children></VBox>
             <Button mnemonicParsing="false" onAction="#onClickAbout" style="-fx-background-color: #00000000;">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/ic_info_outline_black_48dp.png" />
                      </image></ImageView>
                </graphic>
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Button>
          </children>

@@ -71,7 +71,7 @@ class WeatherController() : CycleFxController() {
         subscriptions = CompositeSubscription()
     }
 
-    override fun onCreate() {
+    override fun onStart() {
         super.onCreate()
         fetchWeather()
     }

@@ -48,7 +48,15 @@ abstract class CycleFxApplication() : Application(), ICycleFxApplication {
     }
 
     override fun pushScene(sceneInfo: SceneInfo, isAddBackStack: Boolean) {
+        var currentWidth: Double? = null
+        var currentHeight: Double? = null
+        currentSceneInfo?.let {
+            currentWidth = primaryStage.width
+            currentHeight = primaryStage.height
+        }
         primaryStage.scene = sceneInfo.scene
+        currentWidth?.let { primaryStage.width = it }
+        currentHeight?.let { primaryStage.height = it }
         currentSceneInfo?.controller?.onStop()
         if (isAddBackStack) {
             currentSceneInfo.let { sceneInfoBackStack.push(it) }

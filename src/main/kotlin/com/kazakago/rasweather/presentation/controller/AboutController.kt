@@ -1,6 +1,8 @@
 package com.kazakago.rasweather.presentation.controller
 
-import com.kazakago.rasweather.ICycleFxApplication
+import com.kazakago.cyclefx.CycleFx
+import com.kazakago.cyclefx.presentation.controller.CycleFxController
+import com.kazakago.cyclefx.presentation.value.SceneInfo
 import javafx.fxml.FXML
 
 /**
@@ -9,8 +11,8 @@ import javafx.fxml.FXML
 class AboutController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(application: ICycleFxApplication?): SceneInfo? {
-            return application?.createSceneInfo("fxml/about.fxml")
+        @JvmStatic fun createSceneInfo(cycleFx: CycleFx?): SceneInfo? {
+            return cycleFx?.createSceneInfo("fxml/about.fxml")
         }
     }
 

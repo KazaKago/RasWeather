@@ -1,5 +1,6 @@
-package com.kazakago.rasweather.presentation.controller
+package com.kazakago.cyclefx.presentation.value
 
+import com.kazakago.cyclefx.presentation.controller.ICycleFxController
 import javafx.scene.Scene
 
 /**

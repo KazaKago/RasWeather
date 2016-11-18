@@ -1,5 +1,6 @@
 package com.kazakago.rasweather
 
+import com.kazakago.cyclefx.CycleFxApplication
 import com.kazakago.rasweather.di.component.ApplicationComponent
 import com.kazakago.rasweather.di.component.DaggerApplicationComponent
 import com.kazakago.rasweather.di.module.ApplicationModule

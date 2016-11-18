@@ -34,8 +34,8 @@ class WeatherApplication() : CycleFxApplication() {
     override fun start(primaryStage: Stage) {
         super.start(primaryStage)
 
-        WeatherController.createSceneInfo(this)?.let {
-            pushScene(it, false)
+        WeatherController.createViewInfo(this)?.let {
+            pushView(it, false)
         }
         primaryStage.title = "RasWeather"
         primaryStage.show()

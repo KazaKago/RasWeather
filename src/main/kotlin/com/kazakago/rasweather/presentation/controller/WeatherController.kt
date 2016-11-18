@@ -2,7 +2,7 @@ package com.kazakago.rasweather.presentation.controller
 
 import com.kazakago.cyclefx.CycleFx
 import com.kazakago.cyclefx.presentation.controller.CycleFxController
-import com.kazakago.cyclefx.presentation.value.SceneInfo
+import com.kazakago.cyclefx.presentation.value.ViewInfo
 import com.kazakago.rasweather.WeatherApplication
 import com.kazakago.rasweather.domain.model.WeatherModel
 import com.kazakago.rasweather.domain.usecase.WeatherUseCase
@@ -25,8 +25,8 @@ import javax.inject.Inject
 class WeatherController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(cycleFx: CycleFx): SceneInfo? {
-            return cycleFx.createSceneInfo("fxml/weather.fxml")
+        @JvmStatic fun createViewInfo(cycleFx: CycleFx): ViewInfo? {
+            return cycleFx.createViewInfo("fxml/weather.fxml")
         }
     }
 
@@ -83,15 +83,15 @@ class WeatherController() : CycleFxController() {
 
     @FXML
     fun onClickSettings() {
-        SettingsController.createSceneInfo(this)?.let {
-            pushScene(it, true)
+        SettingsController.createViewInfo(this)?.let {
+            pushView(it, true)
         }
     }
 
     @FXML
     fun onClickDescription() {
-        DescriptionController.createSceneInfo(this, weather)?.let {
-            pushScene(it, true)
+        DescriptionController.createViewInfo(this, weather)?.let {
+            pushView(it, true)
         }
     }
 

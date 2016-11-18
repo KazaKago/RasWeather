@@ -2,7 +2,7 @@ package com.kazakago.rasweather.presentation.controller
 
 import com.kazakago.cyclefx.CycleFx
 import com.kazakago.cyclefx.presentation.controller.CycleFxController
-import com.kazakago.cyclefx.presentation.value.SceneInfo
+import com.kazakago.cyclefx.presentation.value.ViewInfo
 import javafx.fxml.FXML
 
 /**
@@ -11,20 +11,20 @@ import javafx.fxml.FXML
 class SettingsController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(cycleFx: CycleFx): SceneInfo? {
-            return cycleFx.createSceneInfo("fxml/settings.fxml")
+        @JvmStatic fun createViewInfo(cycleFx: CycleFx): ViewInfo? {
+            return cycleFx.createViewInfo("fxml/settings.fxml")
         }
     }
 
     @FXML
     fun onClickBack() {
-        popScene()
+        popView()
     }
 
     @FXML
     fun onClickAbout() {
-        AboutController.createSceneInfo(this)?.let {
-            pushScene(it, true)
+        AboutController.createViewInfo(this)?.let {
+            pushView(it, true)
         }
     }
 

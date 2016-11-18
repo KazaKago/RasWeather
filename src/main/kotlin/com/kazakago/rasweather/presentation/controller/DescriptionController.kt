@@ -2,7 +2,7 @@ package com.kazakago.rasweather.presentation.controller
 
 import com.kazakago.cyclefx.CycleFx
 import com.kazakago.cyclefx.presentation.controller.CycleFxController
-import com.kazakago.cyclefx.presentation.value.SceneInfo
+import com.kazakago.cyclefx.presentation.value.ViewInfo
 import com.kazakago.rasweather.domain.model.WeatherModel
 import javafx.fxml.FXML
 import javafx.scene.control.Label
@@ -14,10 +14,10 @@ import javafx.scene.control.TextArea
 class DescriptionController() : CycleFxController() {
 
     companion object {
-        @JvmStatic fun createSceneInfo(cycleFx: CycleFx, weather: WeatherModel?): SceneInfo? {
-            val sceneInfo = cycleFx.createSceneInfo("fxml/description.fxml")
-            sceneInfo?.controller<DescriptionController>()?.weather = weather
-            return sceneInfo
+        @JvmStatic fun createViewInfo(cycleFx: CycleFx, weather: WeatherModel?): ViewInfo? {
+            val viewInfo = cycleFx.createViewInfo("fxml/description.fxml")
+            viewInfo?.controller<DescriptionController>()?.weather = weather
+            return viewInfo
         }
     }
 
@@ -34,7 +34,7 @@ class DescriptionController() : CycleFxController() {
 
     @FXML
     fun onClickBack() {
-        popScene()
+        popView()
     }
 
 }

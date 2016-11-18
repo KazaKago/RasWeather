@@ -1,7 +1,7 @@
 package com.kazakago.cyclefx.presentation.controller
 
 import com.kazakago.cyclefx.ICycleFxApplication
-import com.kazakago.cyclefx.presentation.value.SceneInfo
+import com.kazakago.cyclefx.presentation.value.ViewInfo
 import java.util.*
 
 /**
@@ -11,12 +11,12 @@ abstract class CycleFxController : ICycleFxController {
 
     override var cycleFxApplication: ICycleFxApplication? = null
 
-    protected val currentSceneInfo: SceneInfo?
-        get() = cycleFxApplication?.currentSceneInfo
-    protected val sceneInfoBackStack: Deque<SceneInfo>
+    protected val currentViewInfo: ViewInfo?
+        get() = cycleFxApplication?.currentViewInfo
+    protected val viewInfoBackStack: Deque<ViewInfo>
         get() {
-            val sceneInfoBackStack =  cycleFxApplication?.sceneInfoBackStack?.let { it } ?: ArrayDeque<SceneInfo>()
-            return Collections.unmodifiableCollection(sceneInfoBackStack) as Deque<SceneInfo>
+            val sceneInfoBackStack =  cycleFxApplication?.viewInfoBackStack?.let { it } ?: ArrayDeque<ViewInfo>()
+            return Collections.unmodifiableCollection(sceneInfoBackStack) as Deque<ViewInfo>
         }
 
     override fun onCreate() {
@@ -31,16 +31,16 @@ abstract class CycleFxController : ICycleFxController {
     override fun onDestory() {
     }
 
-    override fun createSceneInfo(resourcePath: String): SceneInfo? {
-        return cycleFxApplication?.createSceneInfo(resourcePath)
+    override fun createViewInfo(resourcePath: String): ViewInfo? {
+        return cycleFxApplication?.createViewInfo(resourcePath)
     }
 
-    override fun pushScene(sceneInfo: SceneInfo, isAddBackStack: Boolean) {
-        cycleFxApplication?.pushScene(sceneInfo, isAddBackStack)
+    override fun pushView(viewInfo: ViewInfo, isAddBackStack: Boolean) {
+        cycleFxApplication?.pushView(viewInfo, isAddBackStack)
     }
 
-    override fun popScene() {
-        cycleFxApplication?.popScene()
+    override fun popView() {
+        cycleFxApplication?.popView()
     }
 
 }

@@ -1,6 +1,6 @@
 package com.kazakago.cyclefx
 
-import com.kazakago.cyclefx.presentation.value.SceneInfo
+import com.kazakago.cyclefx.presentation.value.ViewInfo
 import java.util.*
 
 /**
@@ -8,7 +8,7 @@ import java.util.*
  */
 interface ICycleFxApplication : CycleFx {
 
-    var currentSceneInfo: SceneInfo?
-    val sceneInfoBackStack: Deque<SceneInfo>
+    var currentViewInfo: ViewInfo?
+    val viewInfoBackStack: Deque<ViewInfo>
 
 }

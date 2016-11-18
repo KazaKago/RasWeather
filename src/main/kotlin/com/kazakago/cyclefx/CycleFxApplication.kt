@@ -1,7 +1,7 @@
 package com.kazakago.cyclefx
 
 import com.kazakago.cyclefx.presentation.controller.ICycleFxController
-import com.kazakago.cyclefx.presentation.value.SceneInfo
+import com.kazakago.cyclefx.presentation.value.ViewInfo
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
@@ -16,8 +16,8 @@ abstract class CycleFxApplication() : Application(), ICycleFxApplication {
 
     override var cycleFxApplication: ICycleFxApplication? = null
 
-    override var currentSceneInfo: SceneInfo? = null
-    override val sceneInfoBackStack = ArrayDeque<SceneInfo>()
+    override var currentViewInfo: ViewInfo? = null
+    override val viewInfoBackStack = ArrayDeque<ViewInfo>()
     private lateinit var primaryStage: Stage
 
     @Throws(Exception::class)
@@ -29,47 +29,43 @@ abstract class CycleFxApplication() : Application(), ICycleFxApplication {
     @Throws(Exception::class)
     override fun stop() {
         super.stop()
-        currentSceneInfo?.controller?.onStop()
-        currentSceneInfo?.controller?.onDestory()
-        sceneInfoBackStack.map {
+        currentViewInfo?.controller?.onStop()
+        currentViewInfo?.controller?.onDestory()
+        viewInfoBackStack.map {
             it?.controller?.onStop()
             it?.controller?.onDestory()
         }
     }
 
-    override fun createSceneInfo(resourcePath: String): SceneInfo? {
+    override fun createViewInfo(resourcePath: String): ViewInfo? {
         val fxmlLoader = FXMLLoader(javaClass.classLoader.getResource(resourcePath))
         val root = fxmlLoader.load<Parent>()
         val controller = fxmlLoader.getController<ICycleFxController>()
         controller.cycleFxApplication = this
         controller.onCreate()
 
-        return SceneInfo(Scene(root), controller)
+        return ViewInfo(root, controller)
     }
 
-    override fun pushScene(sceneInfo: SceneInfo, isAddBackStack: Boolean) {
-        var currentWidth: Double? = null
-        var currentHeight: Double? = null
-        currentSceneInfo?.let {
-            currentWidth = primaryStage.width
-            currentHeight = primaryStage.height
-        }
-        primaryStage.scene = sceneInfo.scene
-        currentWidth?.let { primaryStage.width = it }
-        currentHeight?.let { primaryStage.height = it }
-        currentSceneInfo?.controller?.onStop()
-        if (isAddBackStack) {
-            currentSceneInfo.let { sceneInfoBackStack.push(it) }
+    override fun pushView(viewInfo: ViewInfo, isAddBackStack: Boolean) {
+        if (primaryStage.scene != null) {
+            primaryStage.scene.root = viewInfo.root
         } else {
-            currentSceneInfo?.controller?.onDestory()
+            primaryStage.scene = Scene(viewInfo.root)
         }
-        currentSceneInfo = sceneInfo
-        currentSceneInfo?.controller?.onStart()
+        currentViewInfo?.controller?.onStop()
+        if (isAddBackStack) {
+            currentViewInfo.let { viewInfoBackStack.push(it) }
+        } else {
+            currentViewInfo?.controller?.onDestory()
+        }
+        currentViewInfo = viewInfo
+        currentViewInfo?.controller?.onStart()
     }
 
-    override fun popScene() {
-        if (sceneInfoBackStack.isNotEmpty()) {
-            pushScene(sceneInfoBackStack.pop(), false)
+    override fun popView() {
+        if (viewInfoBackStack.isNotEmpty()) {
+            pushView(viewInfoBackStack.pop(), false)
         }
     }
 }

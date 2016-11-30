@@ -31,7 +31,7 @@ abstract class CycleFxApplication() : Application(), ICycleFxApplication {
         super.stop()
         currentViewInfo?.controller?.onStop()
         currentViewInfo?.controller?.onDestory()
-        viewInfoBackStack.map {
+        viewInfoBackStack.forEach {
             it?.controller?.onStop()
             it?.controller?.onDestory()
         }

@@ -15,7 +15,7 @@ abstract class FileAccess {
     @Throws(IOException::class)
     fun readAll(path: String): String {
         return Files
-                .lines(Paths.get(path), Charset.forName("UTF-8"))
+                .lines(Paths.get(javaClass.classLoader.getResource(path).toURI()), Charset.forName("UTF-8"))
                 .collect(Collectors.joining(System.getProperty("line.separator")))
     }
 

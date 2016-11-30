@@ -1,7 +1,7 @@
 package com.kazakago.rasweather.domain.repository
 
 import com.kazakago.rasweather.domain.model.city.CityModel
-import com.oracle.javafx.jmx.json.JSONException
+import rx.Observable
 import java.io.IOException
 
 
@@ -10,7 +10,13 @@ import java.io.IOException
  */
 interface CityRepository {
 
-    @Throws(IOException::class, JSONException::class)
-    fun findAll(): List<CityModel>
+    @Throws(IOException::class)
+    fun findAll(): Observable<CityModel>
+
+    @Throws(IOException::class)
+    fun getCityId(): Observable<String>
+
+    @Throws(IOException::class)
+    fun setCityId(cityId: String)
 
 }

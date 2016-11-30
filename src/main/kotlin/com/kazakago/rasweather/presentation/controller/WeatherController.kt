@@ -8,6 +8,7 @@ import com.kazakago.rasweather.domain.model.weather.WeatherModel
 import com.kazakago.rasweather.domain.usecase.WeatherUseCase
 import javafx.application.Platform
 import javafx.fxml.FXML
+import javafx.scene.Parent
 import javafx.scene.control.Alert
 import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.Button
@@ -60,6 +61,8 @@ class WeatherController() : CycleFxController() {
     lateinit var refreshButton: Button
     @FXML
     lateinit var settingsButton: Button
+    @FXML
+    lateinit var loadingView: Parent
 
     @Inject
     lateinit var weatherUseCase: WeatherUseCase
@@ -96,6 +99,7 @@ class WeatherController() : CycleFxController() {
     }
 
     private fun fetchWeather() {
+        loadingView.isVisible = true
         subscriptions.add(weatherUseCase.fetch("130010")
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(
@@ -107,6 +111,7 @@ class WeatherController() : CycleFxController() {
                             Platform.runLater { showError() }
                         },
                         {
+                            Platform.runLater { loadingView.isVisible = false }
                         }
                 ))
     }

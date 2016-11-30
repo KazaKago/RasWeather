@@ -2,9 +2,10 @@ package com.kazakago.rasweather.data.repository
 
 import com.kazakago.rasweather.data.file.CityFileAccess
 import com.kazakago.rasweather.data.parser.CityJsonParser
+import com.kazakago.rasweather.data.properties.AppPropertiesManager
 import com.kazakago.rasweather.domain.model.city.CityModel
 import com.kazakago.rasweather.domain.repository.CityRepository
-import com.oracle.javafx.jmx.json.JSONException
+import rx.Observable
 import java.io.IOException
 import java.util.*
 
@@ -14,8 +15,8 @@ import java.util.*
  */
 class CityRepositoryImpl : CityRepository {
 
-    @Throws(IOException::class, JSONException::class)
-    override fun findAll(): List<CityModel> {
+    @Throws(IOException::class)
+    override fun findAll(): Observable<CityModel> {
         val cityModelList = ArrayList<CityModel>()
 
         val cityFileAccess = CityFileAccess()
@@ -23,7 +24,7 @@ class CityRepositoryImpl : CityRepository {
 
         val cityJsonStr = cityFileAccess.readText()
         val prefEntityList = cityJsonParser.parse(cityJsonStr)
-        prefEntityList.forEach {
+        prefEntityList.forEach({
             val prefTitle = it.title
             it.cityList?.forEach {
                 val cityModel = CityModel()
@@ -31,9 +32,24 @@ class CityRepositoryImpl : CityRepository {
                 cityModel.name = prefTitle + " " + it.title
                 cityModelList.add(cityModel)
             }
-        }
+        })
 
-        return cityModelList
+        return Observable.from(cityModelList)
+    }
+
+    @Throws(IOException::class)
+    override fun getCityId(): Observable<String> {
+        val appPropertiesManager = AppPropertiesManager()
+        return Observable.create {
+            appPropertiesManager.getCityId()
+        }
+    }
+
+    @Throws(IOException::class)
+    override fun setCityId(cityId: String) {
+        val appPropertiesManager = AppPropertiesManager()
+        appPropertiesManager.setCityId(cityId)
+        appPropertiesManager.store()
     }
 
 }

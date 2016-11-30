@@ -1,12 +1,12 @@
-package com.kazakago.rasweather.domain.model
+package com.kazakago.rasweather.data.entity.weather
 
 /**
- * Image Model
+ * Image Entity
  *
  *
  * Created by tamura_k on 2016/06/03.
  */
-class ImageModel {
+class ImageEntity {
 
     //天気（晴れ、曇り、雨など）
     var title: String? = null

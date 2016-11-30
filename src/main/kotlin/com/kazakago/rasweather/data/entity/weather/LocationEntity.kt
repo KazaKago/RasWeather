@@ -1,12 +1,12 @@
-package com.kazakago.rasweather.domain.model
+package com.kazakago.rasweather.data.entity.weather
 
 /**
- * Location Model
+ * Location Entity
  *
  *
  * Created by tamura_k on 2016/05/31.
  */
-class LocationModel {
+class LocationEntity {
 
     //地方名（例・九州地方）
     var area: String? = null

@@ -1,10 +1,11 @@
 package com.kazakago.rasweather.di.component
 
-import dagger.Component
 import com.kazakago.rasweather.di.module.ApplicationModule
 import com.kazakago.rasweather.di.module.DataModule
 import com.kazakago.rasweather.di.module.DomainModule
+import com.kazakago.rasweather.presentation.controller.SettingsController
 import com.kazakago.rasweather.presentation.controller.WeatherController
+import dagger.Component
 import javax.inject.Singleton
 
 /**
@@ -15,5 +16,7 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(weatherController: WeatherController)
+
+    fun inject(settingsController: SettingsController)
 
 }

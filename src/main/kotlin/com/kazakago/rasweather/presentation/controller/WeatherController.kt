@@ -4,7 +4,7 @@ import com.kazakago.cyclefx.CycleFx
 import com.kazakago.cyclefx.presentation.controller.CycleFxController
 import com.kazakago.cyclefx.presentation.value.ViewInfo
 import com.kazakago.rasweather.WeatherApplication
-import com.kazakago.rasweather.domain.model.WeatherModel
+import com.kazakago.rasweather.domain.model.weather.WeatherModel
 import com.kazakago.rasweather.domain.usecase.WeatherUseCase
 import javafx.application.Platform
 import javafx.fxml.FXML

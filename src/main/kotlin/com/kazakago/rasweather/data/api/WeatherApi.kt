@@ -1,6 +1,6 @@
 package com.kazakago.rasweather.data.api
 
-import com.kazakago.rasweather.domain.model.WeatherModel
+import com.kazakago.rasweather.data.entity.weather.WeatherEntity
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -11,6 +11,6 @@ import rx.Observable
 interface WeatherApi {
 
     @GET("json/v1")
-    operator fun get(@Query("city") cityId: String): Observable<WeatherModel>
+    operator fun get(@Query("city") cityId: String): Observable<WeatherEntity>
 
 }

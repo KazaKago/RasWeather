@@ -1,18 +1,18 @@
-package com.kazakago.rasweather.domain.model
+package com.kazakago.rasweather.data.entity.weather
 
 /**
- * Weather Model
+ * Weather Entity
  *
  *
  * Created by tamura_k on 2016/05/31.
  */
-class WeatherModel {
+class WeatherEntity {
 
     //地域ID
-    var cityId: Int = 0
+    var cityId: String? = null
 
     //予報を発表した地域を定義
-    var location: LocationModel? = null
+    var location: LocationEntity? = null
     //タイトル・見出し
     var title: String? = null
     //リクエストされたデータの地域に該当するlivedoor 天気情報のURL
@@ -20,12 +20,12 @@ class WeatherModel {
     //予報の発表日時
     var publicTime: String? = null
     //天気概況文
-    var description: DescriptionModel? = null
+    var description: DescriptionEntity? = null
     //府県天気予報の予報日毎の配列
-    var forecasts: List<ForecastModel>? = null
+    var forecasts: List<ForecastEntity>? = null
     //ピンポイント予報の発表地点の配列
-    var pinpointLocations: List<LinkModel>? = null
+    var pinpointLocations: List<LinkEntity>? = null
     //コピーライト
-    var copyright: CopyrightModel? = null
+    var copyright: CopyrightEntity? = null
 
 }

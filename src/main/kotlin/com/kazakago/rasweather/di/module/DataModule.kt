@@ -1,9 +1,11 @@
 package com.kazakago.rasweather.di.module
 
+import com.kazakago.rasweather.data.repository.CityRepositoryImpl
+import com.kazakago.rasweather.data.repository.WeatherRepositoryImpl
+import com.kazakago.rasweather.domain.repository.CityRepository
+import com.kazakago.rasweather.domain.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
-import com.kazakago.rasweather.data.repository.WeatherRepositoryImpl
-import com.kazakago.rasweather.domain.repository.WeatherRepository
 import javax.inject.Singleton
 
 /**
@@ -16,6 +18,12 @@ class DataModule() {
     @Singleton
     fun provideWeatherRepository(): WeatherRepository {
         return WeatherRepositoryImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCityRepository(): CityRepository {
+        return CityRepositoryImpl()
     }
 
 }

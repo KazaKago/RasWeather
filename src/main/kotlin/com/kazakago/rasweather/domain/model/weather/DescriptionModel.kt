@@ -1,4 +1,4 @@
-package com.kazakago.rasweather.domain.model
+package com.kazakago.rasweather.domain.model.weather
 
 /**
  * Description Model

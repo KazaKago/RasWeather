@@ -2,7 +2,7 @@ group 'com.kazakago'
 version '1.0.0'
 
 buildscript {
-    ext.kotlin_version = '1.0.5'
+    ext.kotlin_version = '1.0.5-2'
 
     repositories {
         mavenCentral()
@@ -29,8 +29,12 @@ dependencies {
     //Dagger2
     compile 'com.google.dagger:dagger:2.7'
     kapt 'com.google.dagger:dagger-compiler:2.7'
+    //Gson
+    compile 'com.google.code.gson:gson:2.8.0'
     //Rx
     compile 'io.reactivex:rxjava:1.2.2'
+    //ModelMapper
+    compile 'org.modelmapper:modelmapper:0.7.7'
     //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'

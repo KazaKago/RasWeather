@@ -1,6 +1,6 @@
 package com.kazakago.rasweather.domain.repository
 
-import com.kazakago.rasweather.domain.model.WeatherModel
+import com.kazakago.rasweather.domain.model.weather.WeatherModel
 import rx.Observable
 
 /**

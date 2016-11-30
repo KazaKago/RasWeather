@@ -1,12 +1,12 @@
-package com.kazakago.rasweather.domain.model
+package com.kazakago.rasweather.data.entity.weather
 
 /**
- * Temperature Unit Model
+ * Temperature Unit Entity
  *
  *
  * Created by tamura_k on 2016/06/03.
  */
-class TemperatureUnitModel {
+class TemperatureUnitEntity {
 
     //摂氏
     var celsius: Float? = null

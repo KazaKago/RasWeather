@@ -1,7 +1,7 @@
 package com.kazakago.rasweather.domain.usecase
 
-import com.kazakago.rasweather.domain.model.ForecastModel
-import com.kazakago.rasweather.domain.model.WeatherModel
+import com.kazakago.rasweather.domain.model.weather.ForecastModel
+import com.kazakago.rasweather.domain.model.weather.WeatherModel
 import rx.Observable
 
 /**

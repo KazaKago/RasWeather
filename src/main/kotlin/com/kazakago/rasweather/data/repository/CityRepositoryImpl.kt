@@ -41,7 +41,8 @@ class CityRepositoryImpl : CityRepository {
     override fun getCityId(): Observable<String> {
         val appPropertiesManager = AppPropertiesManager()
         return Observable.create {
-            appPropertiesManager.getCityId()
+            it.onNext(appPropertiesManager.getCityId())
+            it.onCompleted()
         }
     }
 

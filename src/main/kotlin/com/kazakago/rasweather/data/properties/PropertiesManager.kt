@@ -11,7 +11,7 @@ import java.util.*
 abstract class PropertiesManager {
 
     protected val properties = Properties()
-    open protected var savePath = "properties/" + javaClass
+    open protected var savePath = "default.properties"
 
     init {
         try {

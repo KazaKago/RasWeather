@@ -5,6 +5,7 @@ import com.kazakago.cyclefx.presentation.controller.CycleFxController
 import com.kazakago.cyclefx.presentation.value.ViewInfo
 import com.kazakago.rasweather.WeatherApplication
 import com.kazakago.rasweather.domain.model.weather.WeatherModel
+import com.kazakago.rasweather.domain.usecase.CityUseCase
 import com.kazakago.rasweather.domain.usecase.WeatherUseCase
 import javafx.application.Platform
 import javafx.fxml.FXML
@@ -66,6 +67,8 @@ class WeatherController() : CycleFxController() {
 
     @Inject
     lateinit var weatherUseCase: WeatherUseCase
+    @Inject
+    lateinit var cityUseCase: CityUseCase
     private val subscriptions: CompositeSubscription
     private var weather: WeatherModel? = null
 
@@ -99,8 +102,16 @@ class WeatherController() : CycleFxController() {
     }
 
     private fun fetchWeather() {
+        val cityId = cityUseCase
+                .getCityId()
+                .toBlocking()
+                .single()
+        fetchWeather(cityId)
+    }
+
+    private fun fetchWeather(cityId: String) {
         loadingView.isVisible = true
-        subscriptions.add(weatherUseCase.fetch("130010")
+        subscriptions.add(weatherUseCase.fetch(cityId)
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(
                         { weather ->

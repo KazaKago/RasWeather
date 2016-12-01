@@ -40,12 +40,13 @@ class SettingsController() : CycleFxController() {
         super.onCreate()
 
         cityListView.setCellFactory({ param -> CityCell() })
+        refreshCityListView()
+        loadSelected()
+
         cityListView.selectionModel.selectedItemProperty().addListener {
             observableValue, oldItem, newItem ->
             saveSelected(newItem)
         }
-        refreshCityListView()
-        loadSelected()
     }
 
     @FXML

@@ -7,11 +7,11 @@ class AppPropertiesManager : PropertiesManager() {
 
     val CITY_ID = "city_id"
 
-    public fun getCityId(): String {
-        return properties.getProperty(CITY_ID)
+    public fun getCityId(): String? {
+        return properties.getOrDefault(CITY_ID, "130010") as? String
     }
 
-    public fun setCityId(cityId: String) {
+    public fun setCityId(cityId: String?) {
         properties.setProperty(CITY_ID, cityId)
     }
 

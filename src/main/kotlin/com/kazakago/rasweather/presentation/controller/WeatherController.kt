@@ -19,7 +19,10 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
+import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
 
 /**
  * Created by tamura_k on 2016/11/08.
@@ -71,15 +74,25 @@ class WeatherController() : CycleFxController() {
     lateinit var cityUseCase: CityUseCase
     private val subscriptions: CompositeSubscription
     private var weather: WeatherModel? = null
+    private var refreshTimer: Timer? = null
 
     init {
         WeatherApplication.application.applicationComponent.inject(this)
         subscriptions = CompositeSubscription()
     }
 
+    override fun onCreate() {
+        super.onCreate()
+    }
+
     override fun onStart() {
         super.onCreate()
         fetchWeather()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        refreshTimer?.cancel()
     }
 
     @FXML
@@ -120,9 +133,11 @@ class WeatherController() : CycleFxController() {
                         },
                         { error ->
                             Platform.runLater { showError() }
+                            resetTimer()
                         },
                         {
                             Platform.runLater { loadingView.isVisible = false }
+                            resetTimer()
                         }
                 ))
     }
@@ -169,6 +184,16 @@ class WeatherController() : CycleFxController() {
         alert.dialogPane.headerText = "通信エラー"
         alert.dialogPane.contentText = "情報の更新に失敗しました"
         alert.show()
+    }
+
+    private fun resetTimer() {
+        refreshTimer?.cancel()
+        refreshTimer = Timer()
+        refreshTimer?.schedule(object : TimerTask() {
+            override fun run() {
+                fetchWeather()
+            }
+        }, TimeUnit.HOURS.toMillis(1))
     }
 
 }

@@ -19,10 +19,11 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-
 
 /**
  * Created by tamura_k on 2016/11/08.
@@ -145,11 +146,11 @@ class WeatherController() : CycleFxController() {
     private fun refreshView(weather: WeatherModel) {
         locationLabel.text = weather.title
         descriptionLabel.text = weather.description?.text
-        publishTimeLabel.text = weather.publicTime
+        publishTimeLabel.text = formatPublicTime(weather.publicTime)
         weather.forecasts?.let {
             if (0 < it.count()) {
                 val forecast = it[0]
-                todayDateLabel.text = forecast.dateLabel + " (" + forecast.date + ")"
+                todayDateLabel.text = formatForecastDate(forecast.dateLabel, forecast.date)
                 todayWeatherImage.image = weatherUseCase.getImageUri(forecast)?.let(::Image)
                 todayWeatherLabel.text = forecast.telop
                 todayTemperatureMaxLabel.text = forecast.temperature?.max?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
@@ -163,7 +164,7 @@ class WeatherController() : CycleFxController() {
             }
             if (1 < it.count()) {
                 val forecast = it[1]
-                tomorrowDateLabel.text = forecast.dateLabel + " (" + forecast.date + ")"
+                tomorrowDateLabel.text = formatForecastDate(forecast.dateLabel, forecast.date)
                 tomorrowWeatherImage.image = weatherUseCase.getImageUri(forecast)?.let(::Image)
                 tomorrowWeatherLabel.text = forecast.telop
                 tomorrowTemperatureMaxLabel.text = forecast.temperature?.max?.celsius?.toString()?.let { it + "℃" } ?: "-℃"
@@ -176,6 +177,28 @@ class WeatherController() : CycleFxController() {
                 tomorrowTemperatureMinLabel.text = "-℃"
             }
         }
+    }
+
+    private fun formatPublicTime(originalTime: String?): String? {
+        var formattedTime: String? = null
+        try {
+            val timeParser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
+            val time = timeParser.parse(originalTime)
+            val timeFormatter = SimpleDateFormat("発表日時 yyyy/MM/dd HH:mm E")
+            formattedTime = timeFormatter.format(time)
+        } catch (e: ParseException) { }
+        return formattedTime
+    }
+
+    private fun formatForecastDate(dateLabel: String?, originalTime: String?): String? {
+        var formattedTime: String? = null
+        try {
+            val timeParser = SimpleDateFormat("yyyy-MM-dd")
+            val time = timeParser.parse(originalTime)
+            val timeFormatter = SimpleDateFormat(dateLabel + " (yyyy/MM/dd E)")
+            formattedTime = timeFormatter.format(time)
+        } catch (e: ParseException) { }
+        return formattedTime
     }
 
     private fun showError() {

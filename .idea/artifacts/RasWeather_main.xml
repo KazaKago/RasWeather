@@ -16,19 +16,20 @@
         <element id="module-output" name="RasWeather_main" />
       </element>
       <element id="module-output" name="RasWeather" />
-      <element id="library" level="project" name="Gradle: com.squareup.retrofit2:adapter-rxjava:2.1.0" />
       <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.0" />
-      <element id="library" level="project" name="Gradle: com.google.dagger:dagger:2.7" />
       <element id="library" level="project" name="Gradle: com.jfoenix:jfoenix:1.0.0" />
       <element id="library" level="project" name="Gradle: com.squareup.okhttp3:okhttp:3.4.2" />
       <element id="library" level="project" name="Gradle: com.squareup.okio:okio:1.9.0" />
       <element id="library" level="project" name="Gradle: com.squareup.retrofit2:converter-gson:2.1.0" />
       <element id="library" level="project" name="Gradle: com.squareup.retrofit2:retrofit:2.1.0" />
-      <element id="library" level="project" name="Gradle: io.reactivex:rxjava:1.2.2" />
       <element id="library" level="project" name="Gradle: javax.inject:javax.inject:1" />
       <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-runtime:1.0.5-2" />
       <element id="library" level="project" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.0.5-2" />
       <element id="library" level="project" name="Gradle: org.modelmapper:modelmapper:0.7.7" />
+      <element id="library" level="project" name="Gradle: com.google.dagger:dagger:2.8" />
+      <element id="library" level="project" name="Gradle: com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0" />
+      <element id="library" level="project" name="Gradle: io.reactivex.rxjava2:rxjava:2.0.2" />
+      <element id="library" level="project" name="Gradle: org.reactivestreams:reactive-streams:1.0.0" />
     </root>
   </artifact>
 </component>

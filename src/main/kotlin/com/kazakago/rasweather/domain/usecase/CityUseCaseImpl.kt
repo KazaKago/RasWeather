@@ -2,9 +2,9 @@ package com.kazakago.rasweather.domain.usecase
 
 import com.kazakago.rasweather.domain.model.city.CityModel
 import com.kazakago.rasweather.domain.repository.CityRepository
-import rx.Observable
+import io.reactivex.Observable
+import io.reactivex.Single
 import java.io.IOException
-
 
 /**
  * City UseCase Implement
@@ -19,7 +19,7 @@ class CityUseCaseImpl(private val cityRepository: CityRepository) : CityUseCase 
     }
 
     @Throws(IOException::class)
-    override fun getCityId(): Observable<String> {
+    override fun getCityId(): Single<String> {
         return cityRepository.getCityId()
     }
 

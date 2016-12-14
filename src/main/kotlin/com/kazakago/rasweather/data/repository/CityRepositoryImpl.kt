@@ -5,10 +5,10 @@ import com.kazakago.rasweather.data.parser.CityJsonParser
 import com.kazakago.rasweather.data.properties.AppPropertiesManager
 import com.kazakago.rasweather.domain.model.city.CityModel
 import com.kazakago.rasweather.domain.repository.CityRepository
-import rx.Observable
+import io.reactivex.Observable
+import io.reactivex.Single
 import java.io.IOException
 import java.util.*
-
 
 /**
  * Created by tamura_k on 2016/11/30.
@@ -34,15 +34,14 @@ class CityRepositoryImpl : CityRepository {
             }
         })
 
-        return Observable.from(cityModelList)
+        return Observable.fromIterable(cityModelList)
     }
 
     @Throws(IOException::class)
-    override fun getCityId(): Observable<String> {
+    override fun getCityId(): Single<String> {
         val appPropertiesManager = AppPropertiesManager()
-        return Observable.create {
-            it.onNext(appPropertiesManager.getCityId())
-            it.onCompleted()
+        return Single.create {
+            it.onSuccess(appPropertiesManager.getCityId())
         }
     }
 

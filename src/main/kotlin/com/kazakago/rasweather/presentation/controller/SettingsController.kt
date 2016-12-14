@@ -69,8 +69,7 @@ class SettingsController() : CycleFxController() {
                     .map {
                         FXCollections.observableList(it)
                     }
-                    .toBlocking()
-                    .single()
+                    .blockingGet()
             cityListView.items = cityList
         } catch (e: IOException) {
             e.printStackTrace()
@@ -89,8 +88,7 @@ class SettingsController() : CycleFxController() {
     private fun loadSelected() {
         val cityId = cityUseCase
                 .getCityId()
-                .toBlocking()
-                .single()
+                .blockingGet()
         cityListView.items.forEachIndexed { i, city ->
             if (city.id == cityId) {
                 selectedCityIndex(i)

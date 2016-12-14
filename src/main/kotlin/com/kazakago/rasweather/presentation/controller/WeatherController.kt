@@ -7,6 +7,8 @@ import com.kazakago.rasweather.WeatherApplication
 import com.kazakago.rasweather.domain.model.weather.WeatherModel
 import com.kazakago.rasweather.domain.usecase.CityUseCase
 import com.kazakago.rasweather.domain.usecase.WeatherUseCase
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javafx.application.Platform
 import javafx.fxml.FXML
 import javafx.scene.Parent
@@ -17,8 +19,6 @@ import javafx.scene.control.Hyperlink
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
-import rx.schedulers.Schedulers
-import rx.subscriptions.CompositeSubscription
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -73,13 +73,13 @@ class WeatherController() : CycleFxController() {
     lateinit var weatherUseCase: WeatherUseCase
     @Inject
     lateinit var cityUseCase: CityUseCase
-    private val subscriptions: CompositeSubscription
+    private val compositeDisposable: CompositeDisposable
     private var weather: WeatherModel? = null
     private var refreshTimer: Timer? = null
 
     init {
         WeatherApplication.application.applicationComponent.inject(this)
-        subscriptions = CompositeSubscription()
+        compositeDisposable = CompositeDisposable()
     }
 
     override fun onCreate() {
@@ -118,26 +118,25 @@ class WeatherController() : CycleFxController() {
     private fun fetchWeather() {
         val cityId = cityUseCase
                 .getCityId()
-                .toBlocking()
-                .single()
+                .blockingGet()
         fetchWeather(cityId)
     }
 
     private fun fetchWeather(cityId: String) {
         loadingView.isVisible = true
-        subscriptions.add(weatherUseCase.fetch(cityId)
+        compositeDisposable.add(weatherUseCase.fetch(cityId)
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(
                         { weather ->
                             this.weather = weather
-                            Platform.runLater { refreshView(weather) }
+                            Platform.runLater {
+                                loadingView.isVisible = false
+                                refreshView(weather)
+                            }
+                            resetTimer()
                         },
                         { error ->
                             Platform.runLater { showError() }
-                            resetTimer()
-                        },
-                        {
-                            Platform.runLater { loadingView.isVisible = false }
                             resetTimer()
                         }
                 ))
